@@ -13,6 +13,23 @@ const char* __fastcall r_lua_typenames(std::uintptr_t rL, int type)
     return result;
 }
 
+extern const void* r_lua_topointer(uintptr_t rL, int idx) { /* probably gonna need modded types */
+
+	const auto o = r_lua_index2addr(rL, idx);
+	switch (ttype(o)) {
+	case LUA_TTABLE:
+		return hvalue(o);
+	case LUA_TFUNCTION:
+		return clvalue(o);
+	case LUA_TTHREAD:
+		return thvalue(o);
+	case LUA_TUSERDATA:
+	case LUA_TLIGHTUSERDATA:
+		return r_lua_touserdata(rL, idx);
+	default: return NULL;
+	}
+}
+
 char* __fastcall r_lua_pseudo2addr(DWORD* rL, int index) /* scan the pattern below to update this function */
 {
     /* 81 FA ?? ?? ?? ?? 74 ?? 81 FA ?? ?? ?? ?? 74 ?? 8B 41 1C */
