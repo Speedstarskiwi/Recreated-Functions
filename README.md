@@ -10,10 +10,4 @@ Since **Luau** was open source, it made it for developers easy to recreate funct
 
 # List-of-Functions
 
-`r_lua_isvalidmember`
-
-`r_lua_gettop`
-
-`r_lua_typenames`
-
-`r_lua_topointer`
+`r_lua_isvalidmember` `r_lua_gettop` `r_lua_typenames` `r_lua_topointer`
